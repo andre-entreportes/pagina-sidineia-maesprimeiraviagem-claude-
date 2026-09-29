@@ -445,7 +445,7 @@ document.querySelectorAll('.yt').forEach(function (b) {
   }, { once: true });
 });
 
-/* Rastreamento: ViewContent, CliqueCheckout e repasse de UTMs para a Hotmart */
+/* Rastreamento: ViewContent, AddToCart (clique no botão) e repasse de UTMs para a Hotmart */
 (function () {
   var PRODUTO = 'Sem Medo de Ser Mãe de Primeira Viagem';
   var CHAVES = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','src','sck'];
@@ -476,7 +476,7 @@ document.querySelectorAll('.yt').forEach(function (b) {
   }, { passive: true });
   setTimeout(enviarVC, 30000);
 
-  // 3. Clique em link da Hotmart: evento personalizado + UTMs no checkout
+  // 3. Clique em link da Hotmart: AddToCart + UTMs no checkout
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href*="hotmart.com"]');
     if (!a) return;
@@ -491,7 +491,7 @@ document.querySelectorAll('.yt').forEach(function (b) {
       a.href = destino.toString();
     } catch (err) {}
     if (!window.fbq) return;
-    fbq('trackCustom', 'CliqueCheckout', { content_name: PRODUTO });
+    fbq('track', 'AddToCart', { content_name: PRODUTO, content_type: 'product', currency: 'BRL', value: 197 });
     // Clique normal na mesma aba: espera o pixel enviar antes de sair da página
     if (e.button === 0 && !e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey && a.target !== '_blank') {
       e.preventDefault();
