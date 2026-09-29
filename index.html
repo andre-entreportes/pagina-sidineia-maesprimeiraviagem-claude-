@@ -154,7 +154,12 @@ p{margin:0}
 .preco{background:var(--creme)!important;color:var(--tinta)!important;text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center}
 .preco .de{font-size:.9rem;color:var(--tinta-2)}
 .preco .valor{font:500 3.6rem/1 var(--serif);color:var(--tinta)}
-.preco .parc{color:var(--tinta-2)}
+.preco .de s{color:var(--terracota);text-decoration-thickness:2px}
+.preco .valor{font-variant-numeric:lining-nums}
+.preco .valor small{font-size:.45em;font-weight:500;margin-right:.15em}
+.preco .vista{font-size:1.15rem}
+.preco .vista strong{font-weight:500}
+.preco .aviso{font-size:.8rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--terracota)}
 .garantia{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
 .selo{width:92px;height:92px;border-radius:50%;border:1.5px solid var(--pessego);display:grid;place-items:center;text-align:center;font:500 1.6rem/1 var(--serif);color:var(--pessego)}
 .selo small{display:block;font:500 .6rem/1.2 var(--sans);letter-spacing:.14em}
@@ -372,10 +377,10 @@ footer nav a{color:var(--tinta-2)}
       </div>
       <div class="card preco">
         <span class="eyebrow">Preço de lançamento</span>
-        <span class="valor">R$ 197</span>
-        <span>à vista no Pix</span>
-        <span class="parc">ou em até 12x de R$ 19,40 no cartão</span>
-        <span class="de">Por tempo limitado. Depois do lançamento, o valor passa a R$ 497.</span>
+        <span class="de">O valor real do curso é <s>R$ 497</s>. Neste momento, por apenas</span>
+        <span class="valor"><small>12x de</small> R$ 20,37</span>
+        <span class="vista">ou <strong>R$ 197</strong> à vista</span>
+        <span class="aviso">Preço promocional por tempo limitado</span>
         <a class="btn" data-checkout href="https://pay.hotmart.com/R105149680Y?off=u27xlvfm">Quero entrar agora →</a>
         <span class="tiny">Pix ou cartão de crédito · Compra segura pela Hotmart · Acesso imediato após a confirmação</span>
       </div>
