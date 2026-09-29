@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="only light">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sem Medo de Ser Mãe de Primeira Viagem | Sidineia Boiko</title>
 <meta name="description" content="Curso online para mães de primeira viagem se sentirem mais seguras e confiantes nos primeiros meses do bebê, com orientação acolhedora da enfermeira Sidineia Boiko.">
@@ -17,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" type="image/webp" imagesrcset="/assets/sidineia-hero-480.webp 480w, /assets/sidineia-hero-800.webp 800w" imagesizes="(max-width: 900px) 92vw, 460px" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" media="(min-width: 861px)" imagesrcset="/assets/sidineia-hero-480.webp 480w, /assets/sidineia-hero-800.webp 800w" imagesizes="(max-width: 900px) 92vw, 460px" fetchpriority="high">
 <link rel="preload" href="/assets/fonts/jost-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
 
 <!-- Meta Pixel · Pixel Sidineia -->
@@ -211,7 +212,8 @@ footer nav a{color:var(--tinta-2)}
 @media (max-width:860px){
   section{padding-block:56px}
   .hero-grid,.quem-grid,.convite-grid,.invest-grid,.fit{grid-template-columns:1fr}
-  .hero-grid .foto-arco{max-width:360px;margin:0 auto;order:-1}
+  .hero-grid .foto-arco{max-width:360px;width:100%;margin:0 auto}
+  .topo{display:none}
   .travessia-grid{grid-template-columns:1fr}
   .seta{transform:rotate(90deg);justify-self:center}
   .videos{grid-template-columns:repeat(2,minmax(0,1fr))}
