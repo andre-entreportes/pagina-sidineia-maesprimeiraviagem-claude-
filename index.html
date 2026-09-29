@@ -110,6 +110,19 @@ p{margin:0}
 .quem-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
 .quem .foto{border-radius:16px;overflow:hidden;background:var(--creme-2);aspect-ratio:4/5}
 .quem .foto img,.convite .foto img{width:100%;height:100%;object-fit:cover}
+.certs{margin-top:56px;display:flex;flex-direction:column;gap:18px;align-items:center;text-align:center}
+.certs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;width:100%}
+.cert{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:6px;text-align:center;background:#fff;border-radius:12px;padding:12px 12px 16px;box-shadow:0 6px 20px rgba(58,46,43,.08);transition:transform .2s}
+.cert:hover,.cert:focus-visible{transform:translateY(-3px)}
+.cert:focus-visible{outline:2px solid var(--terracota);outline-offset:3px}
+.cert img{width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;background:var(--creme);border-radius:6px;margin-bottom:6px}
+.cert b{font:500 1.05rem/1.25 var(--serif);color:var(--tinta)}
+.cert small{font-size:.8rem;color:var(--tinta-2)}
+.cert-zoom{border:0;padding:0;background:transparent;max-width:min(94vw,1100px)}
+.cert-zoom::backdrop{background:rgba(47,58,86,.85)}
+.cert-zoom img{display:block;width:100%;height:auto;max-height:88vh;object-fit:contain;border-radius:8px}
+.cert-zoom button{position:absolute;top:8px;right:8px;width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.95);font-size:1.6rem;line-height:1;cursor:pointer;color:var(--tinta)}
+@media (max-width:900px){.certs-grid{grid-template-columns:repeat(2,1fr);gap:14px}.cert b{font-size:.95rem}}
 .slogan{font:italic 400 1.2rem/1 var(--serif);color:var(--salvia);letter-spacing:.04em}
 .citacao{border-left:2px solid var(--terracota);padding-left:20px;font:italic 400 1.45rem/1.4 var(--serif)}
 
@@ -276,6 +289,17 @@ footer nav a{color:var(--tinta-2)}
       <p class="citacao">"Eu não vim aqui te ensinar a ser mãe. Vim te lembrar que você já sabe, e te dar segurança para confiar nisso."</p>
     </div>
   </div>
+  <div class="wrap certs">
+    <span class="eyebrow">Formação e certificações</span>
+    <div class="certs-grid">
+      <button class="cert" type="button" data-full="/assets/cert-acupuntura-fcv.jpg"><img src="/assets/cert-acupuntura-fcv.jpg" alt="Certificado de pós-graduação em Acupuntura da Faculdade Cidade Verde" width="1280" height="956" loading="lazy"><b>Pós-graduação em Acupuntura</b><small>Faculdade Cidade Verde · 1.200 horas</small></button>
+      <button class="cert" type="button" data-full="/assets/cert-tuina-abenah.jpg"><img src="/assets/cert-tuina-abenah.jpg" alt="Certificado do curso de Tui-Na da ABENAH" width="1288" height="715" loading="lazy"><b>Formação em Tui-Na</b><small>ABENAH · 2019</small></button>
+      <button class="cert" type="button" data-full="/assets/cert-pediatria-chinesa.jpg"><img src="/assets/cert-pediatria-chinesa.jpg" alt="Certificado do curso Princípios da Pediatria Chinesa do Instituto Ta Han" width="881" height="665" loading="lazy"><b>Princípios da Pediatria Chinesa</b><small>Instituto Ta Han · 2020</small></button>
+      <button class="cert" type="button" data-full="/assets/cert-imunidade-pediatria.jpg"><img src="/assets/cert-imunidade-pediatria.jpg" alt="Certificado do curso Imunidade na Pediatria Chinesa do Instituto Ta Han" width="882" height="653" loading="lazy"><b>Imunidade na Pediatria Chinesa</b><small>Instituto Ta Han · 2020</small></button>
+    </div>
+    <p class="tiny">Toque em um certificado para ver em tamanho maior.</p>
+  </div>
+  <dialog class="cert-zoom" aria-label="Certificado"><img alt=""><button type="button" aria-label="Fechar">×</button></dialog>
 </section>
 
 <!-- O PROGRAMA -->
@@ -455,6 +479,19 @@ document.querySelectorAll('.yt').forEach(function (b) {
     b.replaceChildren(f);
   }, { once: true });
 });
+
+/* Certificados: abre em tamanho maior */
+(function () {
+  var d = document.querySelector('.cert-zoom');
+  if (!d || !d.showModal) return;
+  var img = d.querySelector('img');
+  document.querySelectorAll('.cert').forEach(function (b) {
+    b.addEventListener('click', function () {
+      img.src = b.dataset.full; img.alt = b.querySelector('img').alt; d.showModal();
+    });
+  });
+  d.addEventListener('click', function () { d.close(); });
+})();
 
 /* Rastreamento: ViewContent, AddToCart (clique no botão) e repasse de UTMs para a Hotmart */
 (function () {
