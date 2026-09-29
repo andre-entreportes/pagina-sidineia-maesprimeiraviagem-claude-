@@ -480,7 +480,6 @@ document.querySelectorAll('.yt').forEach(function (b) {
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href*="hotmart.com"]');
     if (!a) return;
-    if (window.fbq) fbq('trackCustom', 'CliqueCheckout', { content_name: PRODUTO });
     try {
       var destino = new URL(a.href);
       Object.keys(salvos).forEach(function (k) {
@@ -491,6 +490,14 @@ document.querySelectorAll('.yt').forEach(function (b) {
       }
       a.href = destino.toString();
     } catch (err) {}
+    if (!window.fbq) return;
+    fbq('trackCustom', 'CliqueCheckout', { content_name: PRODUTO });
+    // Clique normal na mesma aba: espera o pixel enviar antes de sair da página
+    if (e.button === 0 && !e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey && a.target !== '_blank') {
+      e.preventDefault();
+      var href = a.href;
+      setTimeout(function () { location.href = href; }, 350);
+    }
   }, true);
 })();
 </script>
