@@ -17,6 +17,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" type="image/webp" imagesrcset="/assets/sidineia-hero-480.webp 480w, /assets/sidineia-hero-800.webp 800w" imagesizes="(max-width: 900px) 92vw, 460px" fetchpriority="high">
 <link rel="preload" href="/assets/fonts/jost-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
 
 <!-- Meta Pixel · Pixel Sidineia -->
@@ -93,6 +94,7 @@ p{margin:0}
 .selos span:first-child::before{content:none}
 .hero .tipo,.hero .selos,.hero .check li::before,.hero .selos span::before{color:var(--verde);font-weight:500}
 .foto-arco{border-radius:220px 220px 16px 16px;overflow:hidden;aspect-ratio:4/5;background:var(--creme-2)}
+.foto-arco picture,.foto picture{display:block;width:100%;height:100%}
 .foto-arco img{width:100%;height:100%;object-fit:cover}
 
 /* manifesto */
@@ -244,7 +246,7 @@ footer nav a{color:var(--tinta-2)}
       <div><a class="btn" href="#investimento">Quero me sentir mais segura →</a></div>
       <div class="selos"><span>Acesso imediato</span><span>Linguagem acolhedora</span><span>Acesso vitalício</span><span>7 dias de garantia</span></div>
     </div>
-    <div class="foto-arco"><img src="/assets/sidineia-hero.jpg" alt="Sidineia Boiko sorrindo em seu consultório" width="900" height="1351" fetchpriority="high"></div>
+    <div class="foto-arco"><picture><source type="image/webp" srcset="/assets/sidineia-hero-480.webp 480w, /assets/sidineia-hero-800.webp 800w" sizes="(max-width: 900px) 92vw, 460px"><img src="/assets/sidineia-hero.jpg" alt="Sidineia Boiko sorrindo em seu consultório" width="900" height="1351" fetchpriority="high"></picture></div>
   </div>
 </section>
 
@@ -278,7 +280,7 @@ footer nav a{color:var(--tinta-2)}
 <!-- QUEM ACOLHE -->
 <section class="quem">
   <div class="wrap quem-grid">
-    <div class="foto"><img src="/assets/sidineia-consultorio.jpg" alt="Sidineia Boiko em seu consultório" width="800" height="1000" loading="lazy"></div>
+    <div class="foto"><picture><source type="image/webp" srcset="/assets/sidineia-consultorio-480.webp 480w, /assets/sidineia-consultorio-800.webp 800w" sizes="(max-width: 900px) min(92vw, 420px), 440px"><img src="/assets/sidineia-consultorio.jpg" alt="Sidineia Boiko em seu consultório" width="800" height="1000" loading="lazy"></picture></div>
     <div class="stack">
       <span class="eyebrow">Quem acolhe</span>
       <h2>Sidineia Boiko</h2>
@@ -293,11 +295,11 @@ footer nav a{color:var(--tinta-2)}
   <div class="wrap certs">
     <span class="eyebrow">Formação e certificações</span>
     <div class="certs-grid">
-      <button class="cert" type="button" data-full="/assets/cert-enfermagem-cesumar.jpg"><img src="/assets/cert-enfermagem-cesumar.jpg" alt="Diploma de graduação em Enfermagem do Centro Universitário de Maringá" width="1400" height="953" loading="lazy"><b>Graduação em Enfermagem</b><small>Centro Universitário de Maringá · 2006</small></button>
-      <button class="cert" type="button" data-full="/assets/cert-acupuntura-fcv.jpg"><img src="/assets/cert-acupuntura-fcv.jpg" alt="Certificado de pós-graduação em Acupuntura da Faculdade Cidade Verde" width="1400" height="1003" loading="lazy"><b>Pós-graduação em Acupuntura</b><small>Faculdade Cidade Verde · 1.200 horas</small></button>
-      <button class="cert" type="button" data-full="/assets/cert-tuina-abenah.jpg"><img src="/assets/cert-tuina-abenah.jpg" alt="Certificado do curso de Tui-Na da ABENAH" width="1288" height="715" loading="lazy"><b>Formação em Tui-Na</b><small>ABENAH · 2019</small></button>
-      <button class="cert" type="button" data-full="/assets/cert-pediatria-chinesa.jpg"><img src="/assets/cert-pediatria-chinesa.jpg" alt="Certificado do curso Princípios da Pediatria Chinesa do Instituto Ta Han" width="881" height="665" loading="lazy"><b>Princípios da Pediatria Chinesa</b><small>Instituto Ta Han · 2020</small></button>
-      <button class="cert" type="button" data-full="/assets/cert-imunidade-pediatria.jpg"><img src="/assets/cert-imunidade-pediatria.jpg" alt="Certificado do curso Imunidade na Pediatria Chinesa do Instituto Ta Han" width="882" height="653" loading="lazy"><b>Imunidade na Pediatria Chinesa</b><small>Instituto Ta Han · 2020</small></button>
+      <button class="cert" type="button" data-full="/assets/cert-enfermagem-cesumar.jpg"><img src="/assets/cert-enfermagem-cesumar-480.webp" alt="Diploma de graduação em Enfermagem do Centro Universitário de Maringá" width="1400" height="953" loading="lazy"><b>Graduação em Enfermagem</b><small>Centro Universitário de Maringá · 2006</small></button>
+      <button class="cert" type="button" data-full="/assets/cert-acupuntura-fcv.jpg"><img src="/assets/cert-acupuntura-fcv-480.webp" alt="Certificado de pós-graduação em Acupuntura da Faculdade Cidade Verde" width="1400" height="1003" loading="lazy"><b>Pós-graduação em Acupuntura</b><small>Faculdade Cidade Verde · 1.200 horas</small></button>
+      <button class="cert" type="button" data-full="/assets/cert-tuina-abenah.jpg"><img src="/assets/cert-tuina-abenah-480.webp" alt="Certificado do curso de Tui-Na da ABENAH" width="1288" height="715" loading="lazy"><b>Formação em Tui-Na</b><small>ABENAH · 2019</small></button>
+      <button class="cert" type="button" data-full="/assets/cert-pediatria-chinesa.jpg"><img src="/assets/cert-pediatria-chinesa-480.webp" alt="Certificado do curso Princípios da Pediatria Chinesa do Instituto Ta Han" width="881" height="665" loading="lazy"><b>Princípios da Pediatria Chinesa</b><small>Instituto Ta Han · 2020</small></button>
+      <button class="cert" type="button" data-full="/assets/cert-imunidade-pediatria.jpg"><img src="/assets/cert-imunidade-pediatria-480.webp" alt="Certificado do curso Imunidade na Pediatria Chinesa do Instituto Ta Han" width="882" height="653" loading="lazy"><b>Imunidade na Pediatria Chinesa</b><small>Instituto Ta Han · 2020</small></button>
     </div>
     <p class="tiny">Toque em um certificado para ver em tamanho maior.</p>
   </div>
@@ -450,7 +452,7 @@ footer nav a{color:var(--tinta-2)}
 <!-- CONVITE -->
 <section class="convite">
   <div class="wrap convite-grid">
-    <div class="foto"><img src="/assets/sidineia-convite.jpg" alt="Sidineia Boiko" width="800" height="1000" loading="lazy"></div>
+    <div class="foto"><picture><source type="image/webp" srcset="/assets/sidineia-convite-480.webp 480w, /assets/sidineia-convite-800.webp 800w" sizes="(max-width: 900px) min(92vw, 420px), 440px"><img src="/assets/sidineia-convite.jpg" alt="Sidineia Boiko" width="800" height="1000" loading="lazy"></picture></div>
     <div class="stack">
       <span class="eyebrow">Um convite</span>
       <h2>Quando você decide <em>não atravessar sozinha,</em> tudo muda.</h2>
@@ -520,10 +522,12 @@ document.querySelectorAll('.yt').forEach(function (b) {
     vcEnviado = true;
     fbq('track', 'ViewContent', { content_name: PRODUTO, content_type: 'product' });
   }
-  window.addEventListener('scroll', function () {
+  function aoRolar() {
+    if (vcEnviado) return window.removeEventListener('scroll', aoRolar);
     var d = document.documentElement;
     if ((d.scrollTop + window.innerHeight) / d.scrollHeight >= 0.5) enviarVC();
-  }, { passive: true });
+  }
+  window.addEventListener('scroll', aoRolar, { passive: true });
   setTimeout(enviarVC, 30000);
 
   // 3. Clique em link da Hotmart: AddToCart + UTMs no checkout
