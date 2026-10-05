@@ -103,6 +103,14 @@ p{margin:0}
 /* manifesto */
 .manifesto{background:var(--papel)}
 .manifesto blockquote{margin:0;font:400 clamp(1.6rem,3.6vw,2.4rem)/1.35 var(--serif);text-align:center}
+.manifesto-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:center}
+.manifesto-grid blockquote{text-align:left}
+.manifesto-texto{display:flex;flex-direction:column;gap:28px}
+.manifesto-texto::before{content:"";width:56px;height:2px;background:var(--terracota);opacity:.7}
+.manifesto-foto{position:relative;margin:0 18px 18px 0}
+.manifesto-foto::before{content:"";position:absolute;inset:18px -18px -18px 18px;border-radius:220px 220px 16px 16px;background:var(--pessego);opacity:.35}
+.manifesto-foto picture{position:relative;display:block;border-radius:220px 220px 16px 16px;overflow:hidden;aspect-ratio:4/5;background:var(--creme-2)}
+.manifesto-foto img{width:100%;height:100%;object-fit:cover}
 
 /* para voce */
 .lista-num{list-style:none;padding:0;margin:0;display:grid;gap:0;border-top:1px solid var(--creme-2)}
@@ -224,6 +232,10 @@ footer nav a{color:var(--tinta-2)}
   .garantia{grid-template-columns:1fr}
   .mods{grid-template-columns:1fr}
   .mod-ilustra{grid-column:auto}
+  .manifesto-grid{grid-template-columns:1fr;gap:48px}
+  .manifesto-foto{max-width:340px;width:calc(100% - 18px);margin:0 auto 18px;left:-9px}
+  .manifesto-grid blockquote{text-align:center}
+  .manifesto-texto{align-items:center}
 }
 </style>
 </head>
@@ -257,9 +269,11 @@ footer nav a{color:var(--tinta-2)}
 
 <!-- MANIFESTO -->
 <section class="manifesto">
-  <div class="narrow stack center">
-    <blockquote>Ser mãe não deveria começar com medo. Deveria começar com <em>colo</em>, informação que cabe no peito, e alguém que diga, em voz baixa, <em>você está fazendo certo.</em></blockquote>
-    <div class="figura-apoio"><img src="/assets/ilustra-mae-bebe.svg" alt="Ilustração de mãe com o bebê no colo" width="600" height="440" loading="lazy"></div>
+  <div class="wrap manifesto-grid">
+    <figure class="manifesto-foto"><picture><source type="image/webp" srcset="/assets/mae-bebe-colo-480.webp 480w, /assets/mae-bebe-colo-716.webp 716w" sizes="(max-width: 860px) 340px, 400px"><img src="/assets/mae-bebe-colo.jpg" alt="Mãe sentada na poltrona olhando com carinho para o bebê recém-nascido dormindo no colo" width="716" height="896" loading="lazy"></picture></figure>
+    <div class="manifesto-texto">
+      <blockquote>Ser mãe não deveria começar com medo. Deveria começar com <em>colo</em>, informação que cabe no peito, e alguém que diga, em voz baixa, <em>você está fazendo certo.</em></blockquote>
+    </div>
   </div>
 </section>
 
@@ -269,13 +283,13 @@ footer nav a{color:var(--tinta-2)}
     <span class="eyebrow">Para você</span>
     <h2>Se você é a mãe que…</h2>
     <ol class="lista-num">
-      <li><span class="n">01</span><span>se sente perdida quando o bebê chora e você não sabe o porquê.</span></li>
-      <li><span class="n">02</span><span>passa horas no Google e em IAs e termina mais ansiosa do que começou.</span></li>
-      <li><span class="n">03</span><span>não dá conta e fica frustrada por ver o bebê chorando e não conseguir resolver.</span></li>
-      <li><span class="n">04</span><span>não aguenta mais ver vídeos no Instagram e TikTok tentando encontrar respostas, e acaba ficando ainda mais perdida e insegura.</span></li>
-      <li><span class="n">05</span><span>tem medo de fazer errado, de machucar, de não dar conta.</span></li>
-      <li><span class="n">06</span><span>ouve mil palpites diferentes da família e não sabe em quem confiar.</span></li>
-      <li><span class="n">07</span><span>queria simplesmente respirar fundo e sentir que está tudo bem.</span></li>
+      <li><span class="n">01</span><span>Se sente perdida quando o bebê chora e você não sabe o porquê;</span></li>
+      <li><span class="n">02</span><span>Passa horas no Google e em IAs e termina mais ansiosa do que começou;</span></li>
+      <li><span class="n">03</span><span>Não dá conta e fica frustrada por ver o bebê chorando e não conseguir resolver;</span></li>
+      <li><span class="n">04</span><span>Não aguenta mais ver vídeos no Instagram e TikTok tentando encontrar respostas, e acaba ficando ainda mais perdida e insegura;</span></li>
+      <li><span class="n">05</span><span>Tem medo de fazer errado, de machucar, de não dar conta;</span></li>
+      <li><span class="n">06</span><span>Ouve mil palpites diferentes da família e não sabe em quem confiar;</span></li>
+      <li><span class="n">07</span><span>Queria simplesmente respirar fundo e sentir que está tudo bem.</span></li>
     </ol>
     <p>…então este programa foi feito pensando exatamente em você.</p>
     <p class="fecho">Você não precisa fazer tudo perfeito. <em>Só precisa se sentir mais segura a cada dia.</em></p>
