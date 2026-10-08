@@ -33,7 +33,22 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
 // ID anônimo do visitante (melhora a correspondência de eventos no Meta)
 var sbId; try { sbId = localStorage.getItem('sb_vid'); if (!sbId) { sbId = (crypto.randomUUID ? crypto.randomUUID() : Date.now() + '-' + Math.random().toString(36).slice(2)); localStorage.setItem('sb_vid', sbId); } } catch (e) {}
 fbq('init', '4240403222689302', sbId ? { external_id: sbId } : {});
-fbq('track', 'PageView');
+// Envia cada evento pelo pixel e pela API de Conversões (/api/evento), com o mesmo ID para o Meta não contar em dobro
+window.sbEvento = function (nome, dados) {
+  var id = nome + '.' + Date.now() + '.' + Math.random().toString(36).slice(2, 10);
+  fbq('track', nome, dados || {}, { eventID: id });
+  // espera o pixel criar o cookie _fbp antes de mandar para o servidor
+  setTimeout(function () {
+    try {
+      var ck = function (n) { var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)'); return m ? decodeURIComponent(m[1]) : ''; };
+      var fbc = ck('_fbc'), clid = new URLSearchParams(location.search).get('fbclid');
+      if (!fbc && clid) fbc = 'fb.1.' + Date.now() + '.' + clid;
+      fetch('/api/evento', { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ event_name: nome, event_id: id, url: location.href, fbp: ck('_fbp'), fbc: fbc, external_id: sbId || '' }) });
+    } catch (e) {}
+  }, nome === 'PageView' ? 1500 : 0);
+};
+sbEvento('PageView');
 }
 </script>
 <!-- Fim Meta Pixel -->
@@ -539,9 +554,9 @@ document.querySelectorAll('.yt').forEach(function (b) {
   // 2. ViewContent: uma vez por visita, ao rolar 50% ou após 30 segundos
   var vcEnviado = false;
   function enviarVC() {
-    if (vcEnviado || !window.fbq) return;
+    if (vcEnviado || !window.sbEvento) return;
     vcEnviado = true;
-    fbq('track', 'ViewContent', { content_name: PRODUTO, content_type: 'product' });
+    sbEvento('ViewContent', { content_name: PRODUTO, content_type: 'product' });
   }
   function aoRolar() {
     if (vcEnviado) return window.removeEventListener('scroll', aoRolar);
@@ -565,8 +580,8 @@ document.querySelectorAll('.yt').forEach(function (b) {
       }
       a.href = destino.toString();
     } catch (err) {}
-    if (!window.fbq) return;
-    fbq('track', 'AddToCart', { content_name: PRODUTO, content_type: 'product', currency: 'BRL', value: 197 });
+    if (!window.sbEvento) return;
+    sbEvento('AddToCart', { content_name: PRODUTO, content_type: 'product', currency: 'BRL', value: 197 });
     // Clique normal na mesma aba: espera o pixel enviar antes de sair da página
     if (e.button === 0 && !e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey && a.target !== '_blank') {
       e.preventDefault();
