@@ -58,15 +58,17 @@ export async function onRequestPost({ request, env, waitUntil }) {
   return new Response(null, { status: 204 });
 }
 
-// Diagnóstico: /api/evento?diag=1 diz se o token existe e se o Meta o aceita (nunca mostra o token).
+// Diagnóstico: /api/evento?diag=1 diz se o token existe e se o Meta aceita um evento de teste (nunca mostra o token).
 export async function onRequestGet({ request, env }) {
   if (new URL(request.url).searchParams.get('diag') !== '1') return new Response(null, { status: 404 });
   const res = { funcao: 'ok', token_configurado: !!env.META_CAPI_TOKEN, modo_teste: !!env.META_TEST_CODE, nomes_das_variaveis: Object.keys(env).filter((k) => k !== 'ASSETS') };
   if (env.META_CAPI_TOKEN) {
     try {
-      const r = await fetch(`${API}/${PIXEL}?fields=id,name&access_token=${encodeURIComponent(env.META_CAPI_TOKEN)}`);
+      // manda um PageView só para a aba "Testar eventos" (não conta nos relatórios nem nos anúncios)
+      const corpo = { data: [{ event_name: 'PageView', event_time: Math.floor(Date.now() / 1000), event_id: 'diag.' + Date.now(), action_source: 'website', event_source_url: DOMINIO + '/', user_data: { client_ip_address: request.headers.get('CF-Connecting-IP') || '127.0.0.1', client_user_agent: 'diagnostico' } }], test_event_code: 'TEST_DIAG', access_token: env.META_CAPI_TOKEN };
+      const r = await fetch(`${API}/${PIXEL}/events`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(corpo) });
       const j = await r.json();
-      res.meta = r.ok ? { status: r.status, pixel: j.name } : { status: r.status, erro: j.error && j.error.message };
+      res.meta = r.ok ? { status: r.status, eventos_recebidos: j.events_received } : { status: r.status, erro: j.error && j.error.message, detalhe: j.error && (j.error.error_user_msg || j.error.type) };
     } catch (e) { res.meta = { erro: e.message }; }
   }
   return new Response(JSON.stringify(res, null, 2), { headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' } });
