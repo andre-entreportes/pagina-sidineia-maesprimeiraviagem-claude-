@@ -57,3 +57,17 @@ export async function onRequestPost({ request, env, waitUntil }) {
   );
   return new Response(null, { status: 204 });
 }
+
+// Diagnóstico: /api/evento?diag=1 diz se o token existe e se o Meta o aceita (nunca mostra o token).
+export async function onRequestGet({ request, env }) {
+  if (new URL(request.url).searchParams.get('diag') !== '1') return new Response(null, { status: 404 });
+  const res = { funcao: 'ok', token_configurado: !!env.META_CAPI_TOKEN, modo_teste: !!env.META_TEST_CODE, nomes_das_variaveis: Object.keys(env).filter((k) => k !== 'ASSETS') };
+  if (env.META_CAPI_TOKEN) {
+    try {
+      const r = await fetch(`${API}/${PIXEL}?fields=id,name&access_token=${encodeURIComponent(env.META_CAPI_TOKEN)}`);
+      const j = await r.json();
+      res.meta = r.ok ? { status: r.status, pixel: j.name } : { status: r.status, erro: j.error && j.error.message };
+    } catch (e) { res.meta = { erro: e.message }; }
+  }
+  return new Response(JSON.stringify(res, null, 2), { headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' } });
+}
